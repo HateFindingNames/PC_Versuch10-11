@@ -1,0 +1,53 @@
+\begin{titlepage}
+	% -------- Naming ------------------------------
+	\ifbool{deutsch}{%
+		\newcommand{\nameA}{\thefirstnameA\space\thelastnameA}
+		\newcommand{\nameB}{\thefirstnameB\space\thelastnameB}
+		\newcommand{\nameC}{\thefirstnameC\space\thelastnameC}
+	}{%
+		\newcommand{\nameA}{\thelastnameA\,\space\thefirstnameA}
+		\newcommand{\nameB}{\thelastnameB\,\space\thefirstnameB}
+		\newcommand{\nameC}{\thelastnameC\,\space\thefirstnameC}
+	}
+	% ----------------------------------------------
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+	\centering
+	\textsc{\Large Hochschule RheinMain} \par
+	\begin{center}
+		\includegraphics[width=0.15\textwidth]{logo-hsrm.jpg}
+	\end{center}
+	\textsc{\LARGE \titleLV}\vspace{0.5cm}
+		\HRule\vspace{0.4cm}
+	{\huge\bfseries \subtitleA}\par\vspace{0.4cm} % Title of Document
+	{\huge\bfseries \subtitleB}\par\vspace{0.4cm} % Titel des Dokuments
+		\HRule\vspace{1.5cm}
+%-------------------
+\begin{minipage}{0.4\textwidth}
+	\large
+	\ifbool{deutsch}{%
+		\textit{\underline{Autoren}}\par\vspace{0.5cm}
+	}{%
+		\textit{\underline{Author}}\par\vspace{0.5cm}
+	}
+	\textsc{\nameA}\par\vspace{0.5cm}
+	\textsc{\nameB}\par\vspace{0.5cm}
+	% \textsc{\nameC}\par\vspace{0.5cm}
+\end{minipage}
+%------------------------------------
+\vfill\vfill\vfill
+\ifbool{deutsch}{%
+	\textsc{\Large Fachbereich Ingenieurwissenschaften}\vspace{0.5cm}\par
+	\textsc{\large Studienbereich Angewandte Physik \& Medizintechnik}\vspace{0.5cm}
+	\vfill
+	\begin{flushleft}
+		Datum LV:\hspace{0.4cm} {\large\dateLV}\hspace{1cm}Datum der Abgabe:\hspace{0.4cm} {\large\today}
+	\end{flushleft}
+}{%
+	\textsc{\Large Department of Engineering}\par\vspace{0.5cm}\par
+	\textsc{\large Applied Physics \& Medical Technology}\par\vspace{0.5cm}
+	\vfill
+	\begin{flushleft}
+		Date:\hspace{0.4cm} {\large\today}
+	\end{flushleft}
+}
+\end{titlepage}

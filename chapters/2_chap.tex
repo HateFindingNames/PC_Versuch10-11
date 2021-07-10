@@ -1,0 +1,157 @@
+%ltex: language=de-DE
+\chapter{Simulation}
+	\Cref{fig:grundschaltung} zeigt die in den Simulationen verwendete Grundschaltung.
+	\begin{figure}[h]
+		\centering
+		\includesvg[inkscapelatex=false, width=.8\textwidth]{LTSpice/grundschaltung}
+		\caption[Grundschaltung des \textit{LT1054}]{Grundschaltung des \textit{LT1054} gemäß Kapitel 8.2 \textit{Typical Application} des Datenblattes.}-
+		\label{fig:grundschaltung}
+	\end{figure}
+	\newpage
+	\section{Ausgangsspannung}
+		Zunächst wird das Einschaltverhalten der Schaltung untersucht. Hierzu wird eine Simulation der Schaltung wie sie in \cref{fig:grundschaltung}
+		zu sehen ist durchgeführt.
+		\begin{figure}[h]
+			\centering
+			\includesvg[width=.8\textwidth]{LTSpice/2.1_Ausgangsspannung/ausgangsspannung}
+			\caption[Verlauf der Ausgangsspannung nach dem Einschaltmoment]{Verlauf der Ausgangsspannung bis \SI{10}{ms} nach dem Einschaltmoment.}
+			\label{fig:Ausgangsspannung nach dem einschalten}
+		\end{figure}
+		\Cref{fig:Ausgangsspannung nach dem einschalten} zeigt den Verlauf der Ausgangsspannung \(U_{out}\) nach dem Einschalten.
+		Es ist zu erkennen, dass sich die erwartete Ausgangsspannung erst etwa \SI{2,6}{ms} nach dem Einschalten einstellt.\par
+		Im eingeschwungenen Zustand beträgt die mittlere Spannung \(\bar{U}_{out}\) am Ausgang des \textit{LT1054} \SI{-4,9506}{V}.
+		Während der simulierte Wert mit einer Abweichung von \SI{0,6}{mV} als deckungsgleich mit dem in \cref{eq:ausgangsspannung theoretisch} gefundenen rechnerischen
+		Wert angenommen werden kann, liegt er auch gut im vom Hersteller angegebenen Intervall für \textit{Regulated output Voltage}
+		von \(\SI{-4,7}{V} \leq U_{out} \leq \SI{-5,2}{V}\) (vgl. \cref{fig:electrical characteristics}).\par\medskip
+		%
+		\begin{figure}[h]
+			\centering
+			\includesvg[width=.8\textwidth]{LTSpice/2.1_Ausgangsspannung/voltage_loss}
+			\caption[Verlauf der Ausgangsspannung bei Abwesenheit von \(R_1\) und \(R_2\)]{Verlauf der Ausgangsspannung bei Abwesenheit von \(R_1\) und \(R_2\). Im eingeschwungenen Zustand beträgt die mittlere
+			Spannung am Ausgang des Spannungsinverters etwa \SI{5,9262}{V}. Das Zeitintervall, bis der eingeschwungene Zustand erreicht ist erhöht sich deutlich.}
+			\label{fig:ohne regelung}
+		\end{figure}
+		Nach Kapitel 7.1 des Datenblattes entspricht \(U_{out} \approx -U_{in}\), wenn das Bauteil durch Entfernen der Widerstände \(R_1\) und \(R_1\)
+		als ungeregelter Spannungsinverter betrieben wird. Die Differenz aus \(U_{in} - |U_{out}|\) wird als
+		\textit{Voltage loss} bezeichnet und mit einem typischen Wert von \SI{0,35}{V} bis \SI{1,1}{V} (maximal \SI{0,55}{V} und \SI{1,6}{V} respektive)
+		bei Lastströmen zwischen \SI{10}{mA} und \SI{100}{mA} angegeben.
+		Eine Simulation bei Gleichhalten aller sonstiger Parameter -- insbesondere des Laststromes -- zeigt eine mittlere Spannung am Ausgang von \SI{5,9262}{V}.
+		Hier ergibt sich ein Spannungsverlust von
+		\begin{equation}
+			U_{loss} = \SI{7}{V} - \SI{5,9262}{V} = \SI{1,0738}{V}
+			\label{eq:voltage loss}
+		\end{equation}
+		was angesichts eines simulierten Laststromes von \SI{50}{mA} erkennbar über dem typischen Wert, jedoch noch unterhalb des maximalen Wertes liegt.
+		% \newpage
+	\section{Schaltfrequenz}
+		Die Schaltung in \cref{fig:grundschaltung} wird auf Periodendauer bzw. Frequenz des internen Oszillators hin überprüft.
+		Hierzu werden die zuvor entfernten Regelungswiderstände wieder hinzugefügt, die Schaltung mit \SI{50}{mA} belastet
+		und eine Simulation mit der Anweisung \texttt{.tran 10ms startup} gestartet. Ein Plot des Spannungsverlaufs am
+		\texttt{OSC}-Anschluss des Spannungsinverters im Zeitbereich \SI{3}{ms} bis \SI{3,5}{ms} zeigt hier eine Periodendauer von
+		\(T = \SI{39,58}{\micro s}\) bzw- eine Frequenz von \(f = T^{-1} \approx \SI{25,26}{Hz}\). Das Datenblatt gibt unter Kapitel 6.5
+		\textit{Electrical Characteristics} eine Oszillatorfrequenz von \SI{25 \pm 10}{kHz} an. Der Wert der Simulation liegt somit gut
+		an der Angabe des Herstellers für den typischen Wert.
+	\section{Verhalten bei Sprüngen der Eingangsspannung}\label{sec:ripple am eingang}
+		Unter \textit{Electrical Characteristics} wird unter \textit{Input regulation} ein Wert für \(\Delta U_{out,max}\) von \SI{25}{mV} angegeben.
+		Die Prüfbedingungen des Herstellers sahen hierbei Kapazitäten von \(C_1 = \SI{10}{\micro F}, C_3 = \SI{2}{nF}\) und \(C_4 = \SI{100}{\micro F}\) vor.
+		Für \(C_1\) und \(C_4\) werden hier aufgrund ihres vergleichsweise geringen Serienwiderstandes Tantal-Varianten empfohlen. In der Simulation werden
+		die Kapazitätswerte angepasst und für die betreffenden Kondensatoren die parasitären Serienwiderstände auf 0 gesetzt.
+		\begin{figure}[h]
+			\centering
+			\includesvg[width=.8\textwidth]{LTSpice/2.3_Eingangsripple/Verlauf_ausgang}
+			\caption[Verlauf der Ausgangsspannung bei rechteckförmigen Sprüngen der Eingangsspannung]{Verlauf der Ausgangsspannung \(U_{out}\) (unten) bei einem der Eingangsspannungsquelle überlagerten Rechtecksignal von \SI{5}{V} (oben).
+			Zu erkennen ist ein den Eingangsseitigen Spannungssprüngen folgende, rechteckförmige Überlagerung der Ausgangsspannung von \(\Delta U_{out} \approx \SI{51,19}{mV}\).}
+			\label{fig:verlauf eingangsripple}
+		\end{figure}
+		Eine Simulation mit den Simulationsanweisungen \texttt{PULSE(0 5 1p 1p 1p 10ms 20ms)} für das überlagerte Rechtecksignal und \texttt{.tran 200ms startup}
+		zeigt im Zeitbereich zwischen \SI{5}{ms} und \SI{50}{ms} den in \cref{fig:verlauf eingangsripple} gezeigten Spannungsverlauf. Zu erkennen ist ein
+		der Ausgangsspannung überlagertes und der Eingangsspannung folgendes Rechtecksignal. \(\Delta U_{out}\) beträgt hier etwa \SI{51,19}{mV}.
+		Es ist an dieser Stelle etwas erstaunlich, dass der Wert beim doppelten des vom Hersteller angegebenen Wertes für das Maximum liegt. Erklärungsversuche
+		das idealisierte Verhalten der verwendeten Komponenten betreffend haben das Simulationsergebnis nicht nennenswert geändert.
+		% \newpage
+	\section{Verhalten bei Lastsprüngen}
+		Nun wird das Verhalten der Schaltung rechteckförmigen Lastsprüngen untersucht. Die in der Simulation nachzubildenden Testbedingungen
+		sehen Lastsprünge zwischen \SI{10}{mA} und \SI{50}{mA} vor. Alle anderen Werte werden gegenüber der Simulation in \cref{sec:ripple am eingang} gleich gehalten.
+		\begin{figure}[h]
+			\centering
+			\includesvg[width=.8\textwidth]{LTSpice/2.4_Lastspruenge/lastspruenge}
+			\caption[Verhalten der Ausgangsspannung bei Lastsprüngen]{Verhalten der Ausgangsspannung bei Lastsprüngen zwischen \SI{10}{mA} und \SI{50}{mA}.}
+			\label{fig:lastspruenge}
+		\end{figure}
+		Der rechteckförmigen Signalform der Ausgangsspannung ist eine Restwelligkeit überlagert. Aus diesem Grunde wurden zwei separate Simulationen
+		in den Bereichen durchgeführt, in denen das Signal einen niedrigen bzw. hohen Pegel besitzt. Hier wurde anschließend
+		vom Simulationsprogramm der Mittelwert errechnet und ausgegeben. Die Differenz beider Mittelwerte liefert hier, wie in \cref{fig:lastspruenge}
+		dokumentiert, ein \(\Delta U_{out}\) von \SI{47,8}{mV}.
+		% \newpage
+	\section{Innenwiderstand}
+		Der Innenwiderstand der Schaltung ist gegeben durch
+		\begin{equation}
+			R_i = \frac{|\Delta \bar{U}_{out}|}{\Delta I_{load}}
+			\label{eq:innenwiderstand}
+		\end{equation}
+		wobei hier \(\Delta \bar{U}_{out}\) den Unterschied der Ausgangsspannung bei verschiedenen Belastungen bezeichnet.\par
+		Simulationen mit Lastströmen von \SI{10}{mA} und \SI{100}{mA} im Zeitbereich zwischen \SI{15}{ms} und \SI{20}{ms} nach dem Einschalten
+		ergeben die in \cref{tab:innenwiderstaende} gelisteten Werte.
+		\begin{table}[h]
+			\caption[Ausgangsspannung in Abhängigkeit des Laststromes mit und ohne Regelungsrückführung]{Ausgangsspannung in Abhängigkeit des Laststromes mit und ohne Regelungsrückführung.}
+			\centering
+			\begin{tabular}{@{}lrrr@{}}%
+				\toprule
+				&\(U_{out}\) (\SI{10}{mA})	&\(U_{out}\) (\SI{100}{mA})& Diff\\
+				\midrule
+				Reguliert		&\SI{-4,9984}{V}&\SI{-4,8914}{V}&\SI{107}{mV}\\
+				Unreguliert		&\SI{-6,3868}{V}&\SI{-5,3565}{V}&\SI{1,0303}{V}\\
+				\bottomrule
+			\end{tabular}
+			\label{tab:innenwiderstaende}
+		\end{table}\par
+		%
+		Rechnerisch ergeben sich somit dynamische Innenwiderstände von
+		\begin{align}
+			R_{i,reg} &= \frac{\SI{4,9984}{V} - \SI{4,8914}{V}}{\SI{90}{mA}} \approx \SI{1,19}{\ohm} \nonumber \\
+			\\
+			R_{i,unreg} &= \frac{\SI{6,3868}{V} - \SI{5,3565}{V}}{\SI{90}{mA}} \approx \SI{11,45}{\ohm} \nonumber \\
+			\label{eq:innenwiderstand gerechnet}
+		\end{align}
+		Zunächst ist auffällig, dass der Innenwiderstand signifikant ansteigt, wenn der Spannungsinverter unregugliert betrieben wird.
+		Dieser Wert liegt jedoch nah an der Angabe des Herstellers unter \textit{Output resistance} mit \SI{10}{\ohm} (typisch) (vgl. \cref{fig:electrical characteristics}).
+	\section{Restwelligkeit}\label{sec:restwelligkeit}
+		Die Güte der Ausgangsspannung bezüglich ihrer Restwelligkeit wird untersucht, indem der Laststrom auf \SI{25}{mA} festgelegt und
+		die Simulationsanweisung dahingehend geändert wird, dass der Verlauf der Ausgangsspannung im eingeschwungenen Zustand dargestellt wird.
+		\begin{figure}[h]
+			\centering
+			\begin{subfigure}[c]{.8\textwidth}
+				\includesvg[width=\textwidth]{LTSpice/2.6_Restwelligkeit/restwelligkeit_ideal}
+				\caption{\(C_1, C_4\) Ideal}
+				\label{subfig:restwelligkeit ideal}
+			\end{subfigure}
+			\begin{subfigure}[c]{.8\textwidth}
+				\includesvg[width=\textwidth]{LTSpice/2.6_Restwelligkeit/restwelligkeit_real}
+				\caption{\(C_1, C_4\) Real}
+				\label{subfig:restwelligkeit real}
+			\end{subfigure}
+			\caption{Größe und Form der Restwelligkeit am Ausgang. (a) zeigt den Spannungsverlauf bei simulation mit idealen Kondensatoren. (b)
+			zeigt den Verlauf bei Austausch von \(C_1\) gegen einen realen Kondensator des types \textit{UPR1C100MAH} und \(C_4\) gegen einen des types \textit{UPL1A101MPH}}
+		\end{figure}
+		In \cref{subfig:restwelligkeit ideal} zeigt sich so eine Restwelligkeit von \(\Delta U_{out} \approx \SI{5,4}{mV}\).
+		Um ein weniger idealisiertes Bild der Situation zu erhalten wurden für den Verlauf in \cref{subfig:restwelligkeit real}
+		die beiden Kondensatoren \(C_1\) und \(C_4\) zu realen Aluminium-Elektrolyt Kondensatoren geändert. Hier wurde sich absichtlich über
+		die Empfehlung des Herstellers Tantal-Kondensatoren zu verwenden hinweg gesetzt, um die den Unterschied hervorzuheben.
+		In diesem Fall erhöht sich die Restwelligkeit um eine Zehnerpotenz auf \SI{34,3}{mV}. Gleichzeitig aber ist eine deutliche Verzerrung
+		des Spannungsverlaufes zu erkennen.\par\medskip
+		Es zeigt sich, dass sich der parasitäre Widerstand von \(C_4\) sehr viel stärker sowohl auf die Verzerrung, als auch auf die Restwelligkeit
+		der Ausgangsspannung auswirkt. Dies ist zu erwarten, da \(C_4\) hier als Ladungsreservoir dient. Ein Serienwiderstand
+		verzögert hier sein Laden was sich letztlich in der gezeigten Wellenform äußert.
+	\section{Wirkungsgrad}
+		Der Wirkungsgrad der Schaltung ist durch
+		\begin{equation}
+			\eta = \frac{\bar{P}_{out}}{\bar{P}_{in}}
+			\label{eq:wirkungsgrad}
+		\end{equation}
+		gegeben.\par\medskip
+		\(\bar{P}_{in}\) ist hier die von der Eingangsspannungsquelle abgegebene Leistung. \(\bar{P}_{out}\) die von der Last
+		aufgenommene Leistung. Grundlage ist hier die Konfiguration aus \cref{sec:restwelligkeit}.\par\medskip
+		Es ergibt sich ein Wirkungsgrad von
+		\begin{equation}
+			\eta = \frac{\SI{124,51}{mW}}{\SI{190,24}{mW}} \approx 0,654
+		\end{equation}

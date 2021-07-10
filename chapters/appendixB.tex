@@ -1,0 +1,38 @@
+\chapter{Anhang}
+	% \lstset{language=Python}
+	\begin{lstlisting}[style=python, caption={Python-Code zur Darstellung der Spannungswerte am Ausgang des \textit{LT1054} bei verschiedenen Kombinationen für die
+		Widerstandswerte \(R_1, R_2\).}]
+		import matplotlib.pyplot as plt
+		from eseries import find_nearest, E12
+
+		def getU(R_one, R_two):
+			return 1.21 * (1 - (R_two / R_one))
+
+		vals = [22,27,33,39,47,56,68,82,100]
+
+		newvals = []
+		for val in vals:
+			newvals.append(find_nearest(E12, val*((5 / 1.21) - 1)))
+		newvals
+
+		hsize = 10
+		fig, ax = plt.subplots(figsize=(hsize,hsize * (9/16)))
+
+		for val in vals:
+			Uout = []
+			for i, newval in enumerate(newvals):
+				Uout.append(getU(val, newval))
+				if i == len(newvals) - 1:
+					ax.plot(newvals, Uout, label=(str(val) + "k"))
+
+		ax.axhspan(-4.9, -5.1, color="green", alpha=.1)
+		ax.set_xlim(100, 300)
+		ax.set_title("Kurvenschaar zur Ermittlung passender Widerstandswerte")
+		ax.set_xlabel("$R_2$ / $k\Omega$")
+		ax.set_ylabel("$U$ / $V$")
+		ax.set_xticks(newvals)
+		ax.legend()
+		ax.grid()
+		plt.show()
+	\end{lstlisting}
+	\label{lst:python code}

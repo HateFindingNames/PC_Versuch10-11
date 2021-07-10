@@ -1,0 +1,57 @@
+%LTeX: language=de-DE
+\chapter{Vorbereitung}
+	Untersucht wird das Verhalten eines integrierten Spannungsinverters (i.e. Ladungspumpenwandler) vom Typ \textit{LT1054} des Herstellers
+	\textsc{Texas Instruments}. Es wird von der in Kapitel 8.2 \textit{Typical Application} des Datenblattes \cite{LT1054.datasheet.TI}
+	angegebenen Grundschaltung ausgegangen. Hierin sind die beiden Widerstände \(R_1\) und \(R_2\) so zu dimensionieren, dass
+	sich eine Ausgangsspannung von \(U_{out} = \SI{(-5 \pm 0.1)}{V}\) einstellt.
+	\begin{equation}
+		R_2 = R_1 \left(\frac{\left| U_{out} \right|}{\frac{U_{ref}}{2}-\SI{40}{mV}} + 1\right)
+		\label{eq:r1 und r2 dimnsionieren}
+	\end{equation}
+	Zur Dimensionierung gibt das Datenblatt unter Kapitel 7.3.1 eine Beispielrechnung ausgehend von einer gewünschten Ausgangsspannung
+	von \SI{-5}{V} und \(R_1 = \SI{20}{k\ohm}\) gemäß \cref{eq:r1 und r2 dimnsionieren} an. Mit der internen Referenzspannung von \(U_{ref} = \SI{2,5}{V}\)
+	und Wahl der Widerstände aus der E12 Reihe ergibt sich hier rechnerisch ein Wert für \(R_2\) von
+	\begin{align}
+		R_2 &= \SI{22}{k\ohm}\left( \frac{\left| \SI{-5}{V} \right|}{\frac{\SI{2,5}{V}}{2} - \SI{40}{mV}} + 1 \right) \nonumber \\
+			&\approx \SI{112,91}{k\ohm}
+			\label{eq:R2 rechnerisch}
+	\end{align}
+	mit dem nächstliegenden Wert der E12-Reihe von \SI{120}{k\ohm}.\par
+	Umstellen von \cref{eq:r1 und r2 dimnsionieren} nach \(U_{out}\) und einsetzen von \(R1\) und \(R_2\) ergibt für diesen Fall
+	eine Ausgangsspannung von
+	\begin{equation}
+		U_{out} = \left( \frac{\SI{2,5}{V}}{2}-\SI{40}{mV} \right) \cdot \left(1 - \frac{\SI{120}{k\ohm}}{\SI{20}{k\ohm}}\right) = \SI{-6,05}{V}
+	\end{equation}
+	was weit außerhalb der gesuchten Toleranz liegt.\par\medskip
+	\Cref{fig:kurvenschaar} zeigt die Ausgangsspannung für weitere Kombinationen des Widerstandspaares unter Berücksichtigung der
+	im Datenblatt empfohlenen Minimal- und Maximalwerte von \(R_1 \geq \SI{20}{k\ohm}\) und \(\SI{100}{k\ohm} \leq R_2 \leq \SI{300}{k\ohm}\) (Code zu finden in \cref{lst:python code}).
+	\begin{figure}[H]
+		\centering
+		\includesvg[width=.8\textwidth]{plots/resistances}
+		\caption[Kurvenschaar zur Ermittlung passender Widerstandswerte]{Kurvenschaar zur Ermittlung passender Widerstandswerte. Grün hinterlegt ist
+		die akzeptable Abweichung der Ausgangsspannung vom Sollwert.}
+		\label{fig:kurvenschaar}
+	\end{figure}
+	Es zeigt sich, dass es für keine Kombination zweier Einzelwerte aus der E12-Reihe eine passende Kombination finden lässt.
+	Um dem zu entgegnen wird \(R_2\) durch zwei Einzelwiderstände in Reihe mit \SI{100}{k\ohm} und \SI{12}{k\ohm} ersetzt.
+	Hieraus ergibt sich nach obiger Gleichung eine Ausgangsspannung von
+	\begin{equation}
+		U_{out} = \SI{-4,95}{V}
+		\label{eq:ausgangsspannung theoretisch}
+	\end{equation}\par\medskip
+	%
+	Mit den Bauteilwerten zur \textit{Typical Application} die im Abschnitt 8.2 des Datenblattes entnommen werden können
+	und den ermittelten Werten für \(R_1, R_2\) lässt sich nach Abschnitt 8.2.2.3 \textit{Output Ripple} die Restwelligkeit
+	am Ausgang der Schaltung abschätzen.
+	\begin{equation}
+		\Delta U = \frac{I_{out}}{2\cdot f \cdot C_{4}} + 2 \cdot I_{out} \cdot R_{ESR}
+		\label{eq:output ripple}
+	\end{equation}
+	In \Cref{eq:output ripple} ist \(f\) die Oszillatorfrequenz, die im Datenblatt mit \SI{25}{kHz} angegeben wird. Mit \SI{100}{\micro F}
+	für \(C_4\) und einem Laststrom von \SI{25}{mA} errechnet sich für die Ausgangsspannung ein Spitze-Spitze-Wert von
+	\begin{equation}
+		\Delta U = \frac{\SI{25}{mA}}{2 \cdot \SI{25}{kHz} \cdot \SI{100}{\micro F}} = \SI{5}{mV}
+	\end{equation}
+	Besitzt der Kondensator am Ausgang jedoch einen nennenswert hohen Serienwiderstand, so darf der zweite Term in \cref{eq:output ripple}
+	nicht mehr vernachlässigt werden. So erhöht sich die Restwelligkeit bei einem Serienwiederstand von \SI{0,05}{\ohm} auf
+	\SI{7,5}{mV} was einem Anstieg von \SI{150}{\percent} entspricht.

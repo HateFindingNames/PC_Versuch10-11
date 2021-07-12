@@ -1,5 +1,6 @@
 %Einstellungen für Kopf- und Fusszeilen mit dem KOMA-Skript und \usepackage{scrpage2}
 \pagestyle{scrheadings}
+\AfterTOCHead{\thispagestyle{empty}}		% removes heading and footing from first page of TOC
 %\pagestyle{scrplain}
 % le --> links, gerade Seite
 % ce --> mittig, gerade Seite
@@ -18,13 +19,13 @@
 %::::::::::::::::::::::::::::::::::: Kopfzeile
 % Kopfzeile gerade Seite
 \automark[chapter]{chapter}
-\lehead[]{\titelkopfzeilelinkseven}
-\cehead[]{\titelkopfzeilemitteeven}
-\rehead[]{\titelkopfzeilerechtseven}
+\lehead[\titelkopfzeilelinkseven]{\titelkopfzeilelinkseven}
+\cehead[\titelkopfzeilemitteeven]{\titelkopfzeilemitteeven}
+\rehead[\titelkopfzeilerechtseven]{\titelkopfzeilerechtseven}
 % Kopfzeile ungerade Seite
-\lohead[]{\titelkopfzeilelinksodd}
-\cohead[]{\titelkopfzeilemitteodd}
-\rohead[]{\titelkopfzeilerechtsodd}
+\lohead[\titelkopfzeilelinksodd]{\titelkopfzeilelinksodd}
+\cohead[\titelkopfzeilemitteodd]{\titelkopfzeilemitteodd}
+% \rohead[\titelkopfzeilerechtsod]{\titelkopfzeilerechtsodd}
 % Linie in der Kopfzeile
 %\setheadtopline{0.2pt} % obere Linie in der Kopfzeile; nur bei scrartcl
 %\setheadsepline{0.4pt} % untere Linie in der Kopfzeile; nur bei scrartcl
@@ -32,14 +33,15 @@
 % Linie in der Fusszeile
 %::::::::::::::::::::::::::::::::::: Fußzeile
 % Fusszeile gerade Seite[plain-style]{scrheadings-style}
-\lefoot[]{\titelfusszeilelinkseven} 
-\cefoot[]{\titelfusszeilemitteeven}
-\refoot[]{\titelfusszeilerechtseven}
+\lefoot[\titelfusszeilelinkseven]{\titelfusszeilelinkseven} 
+\cefoot[\titelfusszeilemitteeven]{\titelfusszeilemitteeven}
+\refoot[\titelfusszeilerechtseven]{\titelfusszeilerechtseven}
 % Fusszeile ungerade Seite
-\lofoot[]{\titelfusszeilelinksodd}
-\cofoot[]{\titelfusszeilemitteodd}
-\rofoot[]{\titelfusszeilerechtsodd}
+\lofoot[\titelfusszeilelinksodd]{\titelfusszeilelinksodd}
+\cofoot[\titelfusszeilemitteodd]{\titelfusszeilemitteodd}
+\rofoot[\titelfusszeilerechtsodd]{\titelfusszeilerechtsodd}
 %\rofoot[\thepage ]{\thepage}
 %\setfoottopline{0.2pt} % obere Linie in der Kopfzeile; nur bei scrartcl
-%\setfootsepline{0.4pt} % untere Linie in der Kopfzeile; nur bei scrartcl
+% \setfootsepline{0.4pt} % untere Linie in der Kopfzeile; nur bei scrartcl
 \KOMAoptions{footsepline=0.4pt}
+% \ofoot[\thepage]{\thepage}

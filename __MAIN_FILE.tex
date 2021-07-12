@@ -1,8 +1,11 @@
-\documentclass[paper=a4,german,11pt,titlepage,twoside=true,headings=normal,numbers=noenddot,captions=tableabove,listof=totoc,index=totoc,bibliography=totoc]{scrreprt}
+\documentclass[paper=a4,german,11pt,titlepage,twoside=false,headings=normal,numbers=noenddot,captions=tableabove,listof=totoc,index=totoc,bibliography=totoc,plainheadsepline,plainfootsepline]{scrreprt}
 %-----------------------------------------------------------------
 \usepackage{etoolbox}
 \newbool{deutsch}
 \booltrue{deutsch}
+\hbadness=10000					% unterdrueckt unwichtige Fehlermeldungen
+\vbadness=10000
+%\pdfsuppresswarningpagegroup=1	% suppress stupid warnings originating from \includesvg
 %-----------------------------------------------------------------
 \input{pre-packages}
 \input{pre-variables}
@@ -15,19 +18,30 @@
 \DeclareNameAlias{editor}{family-given}
 \DeclareNameAlias{translator}{family-given}
 \addbibresource{quellen.bib}
+\chemsetup{
+	modules = all,
+	formula = chemformula,
+	reactions/tag-open=(R,
+	reactions/tag-close=),
+}
+% \usepackage{showframe}
+\usepackage[]{geometry}
 \begin{document}
 %-----------------------------------------------------------------
+\newgeometry{text={17cm,22.5cm},left=2cm,right=2cm,bottom=2.5cm, headsep=1cm,includeheadfoot}
 \input{chapters/0_top}
 \tableofcontents
-\newpage
+\clearpage
+\pagenumbering{arabic}
 %-----------------------------------------------------------------
 % \newcommand{\chaptercount}{5} % put number of chapters here
 % \foreach \c in {1,...,\chaptercount}{\input{chapters/\c_chap}}
+\newgeometry{text={15cm,22.5cm},left=2cm,right=4cm, headsep=1cm}
 \include{chapters/1_chap}
 \include{chapters/2_chap}
 \include{chapters/3_chap}
-% \include{chapters/3_chap}
-% \include{chapters/4_chap}
+\include{chapters/4_chap}
+\include{chapters/5_chap}
 %-----------------------------------------------------------------
 \newpage
 \listoffigures 

@@ -71,6 +71,10 @@
 %\usepackage{sistyle}
 %\usepackage[locale=DE]{siunitx} %nicht zusammen mit sistyle %---------
 \usepackage[locale=DE,per-mode=symbol,parse-numbers=false]{siunitx} %nicht zusammen mit sistyle %---------
+\sisetup{%
+    per-mode=fraction,
+    fraction-function=\nicefrac
+}
 % \usepackage[font={scriptsize,sl},captionskip=3pt]{subfig} % für die Unterbilder %---------
 \usepackage{subcaption}
 \usepackage{shortvrb}
@@ -98,9 +102,17 @@
 \usepackage[style=numeric, citestyle=numeric, backend=biber]{biblatex}
 \usepackage[useregional]{datetime2}
 \usepackage{cleveref} % löscht labels!!!!!!!!!! <--- warum? habs trotzdem eingefügt weil es die referencen nice macht ohne newcommands dafür zu brauchen. außerdem steht intellisense drauf ;)
-\usepackage{isotope} % um chemische gleichungen hübscher darstellen zu können
+% \usepackage{chemfig}
+\usepackage{chemmacros}
+% \usepackage{isotope} % um chemische gleichungen hübscher darstellen zu können
 \usepackage{framed} % rahmen um dinge malen können
 \usepackage{svg} % um auch vektorgrafiken als bild einfügen zu können
+\svgsetup{
+    convertformat=png
+}
 \usepackage{adjustbox} % skaliert floats dynamischer (anti-over/underfull)
 \usepackage[numbered]{bookmark} % platziert im pdf reader bei der kapitelübersicht die jeweiligen kapitelnummer vor die kapitelüberschriften
 \usepackage{threeparttablex}
+\ifbool{deutsch}{%
+    \crefname{reaction}{Reaktion}{Reaktionen}
+}{}

@@ -1,14 +1,21 @@
 %ltex: language=de-DE
-\chapter{Fazit}
-	Der Praktikumsversuch hat gezeigt, dass sich zumindest beim untersuchte Spannungsinverter die Wahl der passiven Beschaltung
-	drastisch auf die Performance der Schaltung auswirken kann.\par\medskip
-	Beim Versuch selbst war die größte Hürde das Simulationsprogramm selbst. So wurden Simulationen bisweilen nie abgeschlossen,
-	Wellenformen wurde bei wiederholter Simulation aber ohne Veränderung der Parameter verschieden ausgegeben und ein mal
-	kam es sogar zu einem Absturz des Programms. Dies ist in der Form bisher noch nicht passiert. Eine kurze Recherche deutet darauf hin,
-	dass eine ungünstige Parametrisierung der Komponenten der Bibliothek und/oder der untersuchten Schaltung in manchen Fällen
-	zu unvorhergesehenem Verhalten führen kann \cite{ltspice.bug}.\par
-	Als Workaround wurde sämtlichen Simulationsanweisungen \texttt{uic} hinzugefügt, was das Problem zumindest augenscheinlich lösen konnte.\par\medskip
-	Auch die Anleitung zum Praktikumsversuch war diesmal weniger gut verständlich. So wurde etwa \(\Delta U_{aus}\) nicht konsequent
-	für den gleichen Sachverhalt verwendet oder es war bisweilen nicht sofort ersichtlich, was konkret gemessen werden soll.\par\medskip
-	Zuletzt ist zu sagen, dass hier zwar die Verwendbarkeit in etwa eigenen Projekten noch fraglich ist, es aber nicht schaden kann das Bauteil
-	und seine Charakteristika im Hinterkopf zu behalten.
+\chapter{Versuchsdurchführung}
+	Wie eingangs erwähnt ist das Residuum des Aufschlusses der kalorimetrischen Bestimmung Gegenstand der nachgelagerten konduktometrischen Titration.
+	Folglich wird bei der Versuchsdurchführung in zwei Schritten vorgegangen.
+	\section{Kalorimetrische Bestimmung und Aufschluss des Chlorgehalts der Probe}
+		Es soll eine kalorimetrische Bestimmung einer unbekannten Probe eines Paraffinöles durchgeführt werden. Hierzu wurde \SI{688,8}{mg} der Probe
+		im Tiegel eingewogen und der Druckbehälter wie in \cref{sec:vorbereitung kalorimetrischer aufschluss} beschrieben beschickt. Am Bedienfeld
+		des Kalorimeters wird nun jedoch der Modus \texttt{Aufschluss} ausgewählt was unter anderem dazu führt, dass der Druckbehälter am Ende
+		des Verbrennungsvorgangs nicht automatisch entgast wird. Dies ist notwendig um durch konduktometrische Titration in Versuch 10
+		auf den Chlorgehalt der Probe schließen zu können.\par
+		Wie während der Kalibrierung wird im Boden des Druckbehälters wieder \SI{20}{mL} der vorbereiteten Natronlauge eingefüllt. Die bei der Verbrennung frei werdende
+		Menge Chlor wird zum einen Teil in der Natronlauge gebunden und befindet sich zum anderen Teil in der Gasphase am Ende der Messung und im
+		Kondensat an den Behälterinnenwänden. Nach abgeschlossener Messung wird der Druckbehälter vorsichtig entnommen und bei geschlossenem
+		Drosselventil an die in \cref{fig:kalorimeter aufbau} erkennbare Entlüftungsstation angeschlossen. Das Glasgefäß der Entlüftungsstation wird
+		mit der übrigen Menge Natronlauge aufgefüllt, sodass nach Öffnen des Ventils das Gas des Druckbehälters beim Entweichen durch
+		die Natronlauge geführt wird.\\
+		Wenn der Druckbehälter entspannt ist wird er vorsichtig geöffnet und sowohl das Gemisch im Boden des Behälters, als auch das Kondensat an
+		seinen Innenwänden durch Abspülen mit VE-Wasser mit dem Inhalt der Entlüftungsstation in einem Messbecher vereint.
+	\section{Titration}
+		Durch die Verbrennung des Paraffins in Gegenwart von Sauerstoff befindet sich in der zu titrierenden Absorberlösung neben den Chlorid-Ionen
+		auch Carbonat-Ionen.

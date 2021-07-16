@@ -14,8 +14,47 @@
 		Drosselventil an die in \cref{fig:kalorimeter aufbau} erkennbare Entlüftungsstation angeschlossen. Das Glasgefäß der Entlüftungsstation wird
 		mit der übrigen Menge Natronlauge aufgefüllt, sodass nach Öffnen des Ventils das Gas des Druckbehälters beim Entweichen durch
 		die Natronlauge geführt wird.\\
-		Wenn der Druckbehälter entspannt ist wird er vorsichtig geöffnet und sowohl das Gemisch im Boden des Behälters, als auch das Kondensat an
+		Wenn der Druckbehälter entspannt ist, wird er vorsichtig geöffnet und sowohl das Gemisch im Boden des Behälters, als auch das Kondensat an
 		seinen Innenwänden durch Abspülen mit VE-Wasser mit dem Inhalt der Entlüftungsstation in einem Messbecher vereint.
-	\section{Titration}
+	\section{Titration}\label{sec:titration}
 		Durch die Verbrennung des Paraffins in Gegenwart von Sauerstoff befindet sich in der zu titrierenden Absorberlösung neben den Chlorid-Ionen
-		auch Carbonat-Ionen.
+		auch Carbonat-Ionen, die mit dem Titranten zusammen Silbernitrat bilden. Chlorid-Ionen bleiben in Folge ungebunden in der Lösung zurück
+		und der Verlauf der Leitfähigkeit lässt keinen Rückschluss auf die Konzentration der Chlorid-Ionen mehr zu.
+		\begin{reaction}
+			2 Ag^+ + 2 NO3^- + CO3^{2-} + 2 Na^+ -> Ag2CO3 v + 2 NaNO3 "\label{re:silbercarbonat bildung}"
+		\end{reaction}
+
+		Carbonat-Ionen befinden sich in wässriger Lösung im dissoziativen Gleichgewicht mit ihren ein- und zweiwertigen Säuren.
+		Letztere ihrerseits - Kohlensäure - steht in wässriger Lösung im Gleichgewicht mit Wasser und Kohlenstoffdioxid welches seinerseits
+		ausgast.
+		\newsavebox\VerticalBalanceArrows
+		\sbox\VerticalBalanceArrows{\schemestart
+			\arrow{<=>}[-90, 0.8]
+		\schemestop
+		}
+		\newsavebox\HorizontalBalanceArrows
+		\sbox\HorizontalBalanceArrows{\schemestart
+			\arrow{<=>}[0, 0.8]
+		\schemestop
+		}
+		\begin{reactions}%https://ctan.ebinger.cc/tex-archive/macros/latex/contrib/chemformula/chemformula-manual.pdf
+			CO2 ^ + H2O {\usebox\HorizontalBalanceArrows} &H2CO3 "\label{re:CO2}"\\
+			&{\usebox\VerticalBalanceArrows}\nonumber\\
+			H2O <-[+OH^-] H3O+ + &HCO3^- <=>>[pH$\downarrow$] CO2 ^ + 2 H2O "\label{re:Hydrogencarbonat}"\\
+			&{\usebox\VerticalBalanceArrows}\nonumber\\
+			2 H+ + &CO3^{2-} "\label{re:carbonat}"
+		\end{reactions}
+		Um die Carbonat-Ionen auszutreiben kann das Gleichgewicht durch Zugabe weiterer Protonen von \cref{re:carbonat} in Richtung \cref{re:CO2}
+		und der rechten Seite von \cref{re:Hydrogencarbonat} verschoben werden. Hier bietet sich Salpetersäure an, da ihr basischer Rest gleich dem Kation des Silbernitrats ist und damit
+		keinen Einfluss auf die Messung hat (vgl. \cref{re:salpeter in hydrogencarbonat}).
+		\begin{reaction}
+			HNO3 + H2O + HCO3^- <=>> CO2 + 2 H2O + NO3^- "\label{re:salpeter in hydrogencarbonat}"
+		\end{reaction}
+		In der Praxis wird mittels Messzylinder etwa \SI{4}{\milli\litre} 1-molare Salpetersäure zur Lösung gegeben und auf dem Magnetrührer
+		etwa 10 Minuten gerührt.
+	\section{Titration der Absorberlösung}\label{sec:titration der absorberloesung}
+		Bedingt durch die Ansäuerung aus \cref{sec:titration} befindet sich noch eine relativ hohe Konzentration Wassertsoff-Ionen in der Lösung
+		wodurch die resultierende Leitfähigkeit maßgeblich bestimmt wird. Vor der Titration wird die Lösung mit einer Menge der unkontaminierten
+		Absorberlösung neutralisiert während die Leitfähigkeit überwacht wird. Wenn sie ein Minimum erreicht hat, kann mit der Titration begonnen werden.
+
+		Die Titration erfolgt analog dem in \cref{sec:titerbestimmung} beschrieben verfahren.

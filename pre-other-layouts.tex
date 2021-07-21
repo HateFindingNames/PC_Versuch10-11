@@ -32,6 +32,20 @@
     showstringspaces=false,%without this there will be a symbol in the places where there is a space
     numbers=left,%
     numberstyle={\tiny \color{black}},% size of the numbers
-    numbersep=9pt,% this defines how far the numbers are from the text
+    numbersep=2pt,% this defines how far the numbers are from the text
+    tabsize=2,
 }
+\lstset{literate=%
+  {Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}1
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+}
+% Listings usage:
+% \begin{lstlisting}[style=myStyle]
+%    ...
+% \end{lstlisting}
 %==============================================================================

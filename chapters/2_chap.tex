@@ -2,7 +2,7 @@
 \chapter{Vorbereitung}
 	Um der zweigeteilten Natur des Praktikumsversuchs Sorge zu tragen wird die Diskussion der Vorbereitung in separaten Unterkapiteln
 	erfolgen.
-	\section{Kalorimetrischer Aufschluss}\label{sec:vorbereitung kalorimetrischer aufschluss}
+	\section{Kalorimetrischer Aufschluss und Brennwertbestimmung}\label{sec:vorbereitung kalorimetrischer aufschluss}
 		Versuch 11 beschäftigt sich mit der Theorie sowie der praktischen Durchführung eines kalorimetrischen Aufschlusses
 		eines Paraffinöls, welches mit Chlorkohlenwasserstoff verunreinigt ist.\par
 		Die durch vollständige Verbrennung frei gesetzte thermische Energie verteilt sich auf die direkt nutzbare und die durch
@@ -21,11 +21,11 @@
 		um entsprechende Kompensationen durchführen zu können, im Vorfeld jeder Messung eine Kalibrierung durchgeführt werden.
 		Die Kalibrierung bestimmt hier die Wärmekapazität der Messeinrichtung selbst und folgt der kalorischen Grundgleichung \cref{eq:kalorische grundgleichung} \cite{Einstieg.in.die.Physikalische.Chemie.fuer.Nebenfaechler.Bechmann.2016}.
 		\begin{equation}
-			Q = \Delta T \cdot k = \Delta T \cdot \sum_i c_i \cdot m_i
+			Q = \Delta T \cdot k = \Delta T \cdot \sum_i \varsigma_i \cdot m_i
 			\label{eq:kalorische grundgleichung}
 		\end{equation}
 
-		\(k = \sum_i c_i \cdot m_i\) bezeichnet hier einen systemspezifischen Proportionalitätsfaktor, der die kumulierte Fähigkeit der einzelnen Systemkomponenenten Wärme aufzunehmen
+		\(k = \sum_i \varsigma_i \cdot m_i\) bezeichnet hier einen systemspezifischen Proportionalitätsfaktor, der die kumulierte Fähigkeit der einzelnen Systemkomponenenten Wärme aufzunehmen
 		widerspiegelt und muss durch Kalibrierung ermittelt werden. \(Q\) ist hier die zugeführte Wärmemenge und \(\Delta T\) die zu messende Temperaturänderung.\par\medskip
 		\begin{figure}[h]
 			\centering
@@ -83,7 +83,12 @@
 	\section{Konduktometrische Titration}\label{sec:titration}
 		Liegt in einer Lösung nur eine Ionenart vor, so kann durch Neutralisation mit begleitender Überwachung der Leitfähigkeit der Lösung
 		auf die anfängliche Ionenkonzentration geschlossen werden.
-
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=.7\textwidth]{assets/photos/aufbau1_edit.jpg}
+			\caption[aufbau Titration]{Aufbau der konduktometrischen Titration. 1: Magnetrührer mit Becherglas und Titrant, 2: Elektroden zur Leitwertmessung, 3: Bürette, 4: Leitwertmessgerät.}
+			\label{fig:aufbau titration}
+		\end{figure}
 		Die Leitfähigkeit einer Lösung hängt in erster Linie von der Ionenbeweglichkeit (die wiederum in gewissem Maße auch von der Temperatur abhängt) und
 		-konzentration ab. Die Leitfähigkeit hat dort ein Minimum, wo bei der Neutralisation ein Äquivalenzpunkt erreicht wird.
 		Im vorliegenden Versuch wird nach dieser Methode der Chloridgehalt des Residuums aus Versuch 11 mittels Neutralisation mit einer Silbernitratlösung bestimmt.
@@ -103,12 +108,14 @@
 			Mit den molaren Massen von \(M(Cl^{-}) \approx \SI{35,450}{\gram\per\mole}\) und \(M(Na^{+}) \approx \SI{22,98977}{\gram\per\mole}\) sowie
 			dem herzustellenden Volumen von \(V = \SI{50}{\milli\litre}\) ergibt sich mit \cref{eq:masse NaCl} eine einzuwiegende Masse des Salzes
 			von gemäß \SI{292,2}{mg}. Mit einer tatsächlich eingewogenen Masse von\\
-			\(\SI{(298,8 \pm 0,1)}{\milli\gram}\) führt dies wiederum gemäß \cref{eq:konzentration Cl}
-			\begin{equation}
-				c(Cl^-) = \frac{M(Cl^-)}{M(Cl^-) + M(Na^+)} \cdot \frac{m}{M(Cl^-) \cdot V}
+			\(\SI{(298,8 \pm 0,1)}{\milli\gram}\) führt dies wiederum in guter Näherung zu einer Konzentration von
+			\begin{align}
+				c(Cl^-) &= \frac{m}{\left[M(Cl^-) + M(Na^+)\right] \cdot V}\nonumber \\
+						&= \frac{\SI{292,2}{\milli\gram}}{\left[\SI{35,450}{\gram\per\mole} + \SI{22,98977}{\gram\per\mole}\right] \cdot \SI{0,05}{\litre}}\nonumber\\
+						&\approx \SI{0,1}{\mole\per\litre}
 				\label{eq:konzentration Cl}
-			\end{equation}
-			zu einer Konzentration von \(c(Cl^{-}) \approx \SI{0,1023}{\mole\per\litre}\).\par
+			\end{align}
+
 			Von der hergestellten Lösung werden \SI{25}{\milli\litre} entnommen und innerhalb eines Becherglases mit \SI{200}{\milli\litre}
 			VE-Wasser verdünnt.
 		\subsection{Titerbestimmung}\label{sec:titerbestimmung}

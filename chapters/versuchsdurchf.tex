@@ -1,24 +1,96 @@
 %ltex: language=de-DE
 \chapter{Versuchsdurchführung}
-	Wie eingangs erwähnt ist das Residuum des Aufschlusses der kalorimetrischen Bestimmung Gegenstand der nachgelagerten konduktometrischen Titration.
+	Wie eingangs erwähnt ist chlorhaltige Absorberlösung des Aufschlusses der kalorimetrischen Bestimmung Gegenstand der nachgelagerten konduktometrischen Titration.
 	Folglich wird bei der Versuchsdurchführung in zwei Schritten vorgegangen.
 	\section{Kalorimetrische Bestimmung und Aufschluss des Chlorgehalts der Probe}\label{sec:kalorimeter bestimmung unbekannte probe}
-		Es soll eine kalorimetrische Bestimmung einer unbekannten Probe eines Paraffinöles durchgeführt werden. Hierzu wurde \SI{688,8}{mg} der Probe
+		\subsection*{Materialliste Kalorimetrie}
+			\underline{Laborgeräte}
+			\begin{itemize}
+				\item Kalorimeter C 6000
+				\item Analysenwaage
+				\item Umwälzkühler IKA RC 2 basic
+				\item Vollpipette
+				\item Messkolben
+				\item Pinzette
+				\item Entlüftungsstation mit
+					\begin{itemize}
+						\item Drosselventil
+						\item Waschflasche
+					\end{itemize}
+			\end{itemize}
+
+			\underline{Verbrauchsmaterial}
+			\begin{itemize}
+				\item Baumwollfaden (Zündhilfe)
+				\item Benzoesäure (Tablettenform)
+				\item Natronlauge \(c(NaOH) \approx \SI{1}{\mole\per\litre}\)
+				\item VE-Wasser
+			\end{itemize}
+		Die in \cref{sec:vorbereitung kalorimetrischer aufschluss} beschriebene Kalibrierung wird im Versuch durch Verbrennung von \(\approx \SI{0,5}{g}\) Benzoesäure
+		durchgeführt wobei die Kalibrierparameter
+
+		\begin{addmargin}[8mm]{0pt}
+			\texttt{Referenzbrennwert}\\
+			\texttt{Probengewicht} und\\
+			\texttt{Externe Energie 1}
+		\end{addmargin}
+		bekannt sein müssen. \texttt{Referenzbrennwert} ergibt sich aus dem spezifischen Brennwert der Benzoesäure mit \(H_{Benz} = \SI{26,461}{\joule\per\gram}\).
+		Die in Tablettenform vorgelegte Benzoesäure wird auf der Laborwaage im Tiegel eingewogen und ergibt so den Parameter \texttt{Probengewicht} mit \(m_{Benz} = \SI{(506,8 \pm 1)}{mg}\).
+		Ein sich ebenfalls im Tiegel befindlicher Baumwollfaden wird elektrisch entzündet und startet so die Verbrennung. Hierdurch wird allerdings eine weitere Wärmeenergie eingebracht,
+		die durch Angabe des letzten Parameters \texttt{Externe Energie 1} intern kompensiert wird. Hier wird \SI{50}{J} hinterlegt. Letztlich kann für die Kalibrierung ausgehend von \cref{eq:kalorische grundgleichung} geschrieben werden:
+		\begin{equation}
+			Q = H_{Benz} \cdot m_{Benz} + Q_{faden} = \Delta T_{kalib} \cdot k
+			\label{eq:grundgleichung fuer kalib umgeschrieben}
+		\end{equation}
+
+		mit \(k\) als der einzigen Unbekannten.\par
+		Die im Zuge der Vorbereitung gemessene Kalorimeterkonstante \(k\) ergibt sich zu
+		\begin{equation}
+			k_{mess} = \SI{8025}{\joule\per\kelvin}
+			\label{eq:gemessene kalorimeterkonstante}
+		\end{equation}
+		womit bei nachfolgenden Messungen der spezifische Brennwert \(H_{Probe,0}\) der unbekannten Probe ermittelt werden kann.
+		
+		Hierzu wurde \SI{688,8}{mg} der Probe
 		im Tiegel eingewogen und der Druckbehälter wie in \cref{sec:vorbereitung kalorimetrischer aufschluss} beschrieben beschickt. Am Bedienfeld
 		des Kalorimeters wird nun jedoch der Modus \texttt{Aufschluss} ausgewählt was unter anderem dazu führt, dass der Druckbehälter am Ende
 		des Verbrennungsvorgangs nicht automatisch entgast wird. Dies ist notwendig um durch konduktometrische Titration in Versuch 10
 		auf den Chlorgehalt der Probe schließen zu können.\par
-		Wie während der Kalibrierung wird im Boden des Druckbehälters wieder \SI{20}{mL} der vorbereiteten Natronlauge eingefüllt. Die bei der Verbrennung frei werdende
+		Wie zur Vorbereitung der Kalibrierung wird im Boden des Druckbehälters \SI{10}{mL} der vorbereiteten Natronlauge eingefüllt. Die bei der Verbrennung frei werdende
 		Menge Chlor wird zum einen Teil in der Natronlauge gebunden und befindet sich zum anderen Teil in der Gasphase am Ende der Messung und im
 		Kondensat an den Behälterinnenwänden. Nach abgeschlossener Messung wird der Druckbehälter vorsichtig entnommen und bei geschlossenem
-		Drosselventil an die in \cref{fig:kalorimeter aufbau} erkennbare Entlüftungsstation angeschlossen. Das Glasgefäß der Entlüftungsstation wird
+		Drosselventil an die in \cref{fig:kalorimeter aufbau} erkennbare Entlüftungsstation angeschlossen. Die Waschflasche der Entlüftungsstation wird
 		mit der übrigen Menge Natronlauge aufgefüllt, sodass nach Öffnen des Ventils das Gas des Druckbehälters beim Entweichen durch
-		die Natronlauge geführt wird.\\
+		die Natronlauge geführt wird.
+
 		Wenn der Druckbehälter entspannt ist, wird er vorsichtig geöffnet und sowohl das Gemisch im Boden des Behälters, als auch das Kondensat an
 		seinen Innenwänden durch Abspülen mit VE-Wasser mit dem Inhalt der Entlüftungsstation in einem Messbecher vereint.
 	\section{Titration}\label{sec:titration}
+		\subsection*{Materialliste Titration}
+			\underline{Laborgeräte}
+			\begin{itemize}
+				\item Bürette
+				\item Magnetrührer
+				\item Analysenwaage
+				\item Wägetrichter
+				\item Messkolben
+				\item Vollpipette
+				\item Becherglas
+				\item Leitfähigkeitsmessgerät mit Elektrodenstab
+				\item Laborstativ
+				\item Messzylinder
+			\end{itemize}
+
+			\underline{Verbrauchsmaterial}
+			\begin{itemize}
+				\item Natriumchlorid
+				\item Silbernitratlösung \(c(AgNO_3) \approx \SI{1}{\mole\per\litre}\)
+				\item Natronlauge \(c(NaOH) \approx \SI{1}{\mole\per\litre}\)
+				\item Salpetersäure \(c(HNO_3) \approx \SI{1}{\mole\per\litre}\)
+				\item VE-Wasser
+			\end{itemize}
 		Durch die Verbrennung des Paraffins in Gegenwart von Sauerstoff befindet sich in der zu titrierenden Absorberlösung neben den Chlorid-Ionen
-		auch Carbonat-Ionen, die mit dem Titranten zusammen Silbernitrat bilden. Chlorid-Ionen bleiben in Folge ungebunden in der Lösung zurück
+		auch Carbonat-Ionen, die mit dem Titer zusammen Silbernitrat bilden. Chlorid-Ionen bleiben in Folge ungebunden in der Lösung zurück
 		und der Verlauf der Leitfähigkeit lässt keinen Rückschluss auf die Konzentration der Chlorid-Ionen mehr zu.
 		\begin{reaction}
 			2 Ag^+ + 2 NO3^- + CO3^{2-} + 2 Na^+ -> Ag2CO3 v + 2 NaNO3 "\label{re:silbercarbonat bildung}"

@@ -1,0 +1,70 @@
+%LTex: language=DE-de
+\chapter{Theoretischer Hintergrund}\label{sec:theo hintergrund}
+	\section*{Kalorische Brennwertbestimmung}
+		In der im Versuch durchgeführten Brennwertbestimmung ist die kalorische Grundgleichung \cref{eq:kalorische grundgleichung}
+		von zentraler Bedeutung.
+
+		Sie beschreibt den Zusammenhang zwischen der Wärmemenge \(Q\), die benötigt wird, um ein System mit der Wärmekapazität \(k\) um die
+		Temperatur \(\Delta T\) zu erwärmen.
+		\begin{equation}
+			Q = \Delta T \cdot k
+			\label{eq:kalorische grundgleichung}
+		\end{equation}
+
+		Die sowohl bezüglich des Brennwertes, als auch des Chlorgehaltes zu bestimmende Probe ist ein mit Chlor verunreinigtes Alkan mit einer
+		Kettenlänge von \(C_{10-17}\) und werden gemeinhin noch veraltet Paraffine genannt. In der Industrie werden sie immer noch häufig als
+		Schmier- und Kühlmittel eingesetzt, oft aber auch als flammhemmender Zusatzstoff in der Elastomerproduktion und -verarbeitung \cite{chloro.paraffine.short-chain,chloro.paraffine.mid-chain}.
+		\begin{figure}[h]
+			\centering
+			\begin{subfigure}[t]{.6\textwidth}
+				\centering
+				\includesvg[width=\textwidth]{assets/svg/paraffin_rein_struktur}
+				\caption{Exemplarische Strukturformel reinen Paraffins.}
+				\label{subfig:paraffin rein}
+			\end{subfigure}
+			% \hfill
+			\par\bigskip
+			\begin{subfigure}[b]{.6\textwidth}
+				\centering
+				\includesvg[width=\textwidth]{assets/svg/paraffin_ckw_struktur}
+				\caption{Exemplarische Strukturformel eines mit Chlor verunreinigten Paraffins.}
+				\label{subfig:paraffin ckw}
+			\end{subfigure}
+			\caption[Vergleich der Strukturen chlorierten und unchlorierten Paraffins]{Vergleich der Strukturen chlorierten (\cref{subfig:paraffin ckw}) und unchlorierten (\cref{subfig:paraffin rein}Paraffins.}
+		\end{figure}
+
+	\section*{Konduktometrische Titration}
+		Während es ebenfalls gängige Praxis ist, Titrationen mittels Farbindikatoren wie bspw. Phenolphtalein durchzuführen um aus der Neutralisation
+		saurer bzw. alkalischer Lösungen über die verbrauchte Menge des Titers den Äquivalenzpunkt anzuzeigen, kann auch die Änderung des Leitwertes
+		des Titranden verwendet werden.\\
+		Die Leitfähigkeit -- üblicherweise angegeben in den Einheiten \SI{}{\siemens\centi\metre\squared\per\mole} -- eines Elektrolyten wird maßgeblich bestimmt durch die Anzahl der
+		in Lösung befindlichen Ladungsträger, der Anzahl der Elementarladungen je Ladungsträger (Wertigkeit), ihrer Beweglichkeit und der Geometrie des Elektrolytvolumens zwischen
+		(und um) den Elektroden.
+		\begin{equation}
+			G = \frac{A}{l} \sum_i z_i \mathcal{F}c_i u_i = \frac{A}{l} \sigma
+			\label{eq:leitfaehigkeit}
+		\end{equation}
+		Hierbei bildet \(\frac{A}{l}\) den geometrischen Proportionalitätsfaktor, \(\sigma\) die spezifische Leitfähigkeit, \(z\) die Wertigkeit der Ladungsträger, \(\mathcal{F}\) die \textsc{Faraday}-Konstante,
+		\(c\) die Ladungsträgerkonzentration und \(u\) ihre Beweglichkeit im Medium \cite{Job.2021.physikalische.chemie}.\\
+		Bei der Titration der Absorberlösung bestehend aus chlorierter Natronlauge (Titrand) durch Silbernitratlösung (Titer) handelt es sich um eine Fällungsreaktion gemäß
+		\cref{re:NaCl und AgNO3}. Das sich bildende Silberchlorid ist in wässrigem Milieu schwer löslich und fällt aus, wodurch sich die Konzentration
+		der in Lösung befindlichen Chlorid-Kationen reduziert.
+		\begin{reaction}
+			Na_{(aq)}^{+}Cl_{(aq)}^{-} + Ag_{(aq)}^{+}NO_{3(aq)}^{-} -> AgCl v + Na_{(aq)}^{+} + NO_{3(aq)}^{-} "\label{re:NaCl und AgNO3}"
+		\end{reaction}
+		Der Verlauf der Titration kann in die Abschnitte vor, im und nach dem Äquivalenzpunkt unterteilt werden:\par
+		\begin{figure}[h]
+			\centering
+			\includesvg[width=.75\textwidth]{assets/svg/leitf_verlauf}
+			\caption[Erwarteter Verlauf der Leitfähigkeit]{Erwarteter Verlauf der Leitfähigkeit bei Zugabe von Silbernitrat in Natriumchloridlösung \cite{Job.2021.physikalische.chemie}.}
+			\label{fig:erwarteter verlauf der leitfaehigkeit}
+		\end{figure}
+		Vor dem Äquivalenzpunkt werden durch Fällung Chlorid-Kationen (\(\SI{-7,9\cdot10^{-8}}{\metre\squared\per\volt\second}\)) durch weniger bewegliche Nitrat-Kationen
+		(\(\SI{-7,4\cdot10^{-8}}{\metre\squared\per\volt\second}\)) im Verhältnis 1:1 ersetzt. Die Konzentration der Natrium-Anionen (\(\SI{5,2\cdot10^{-8}}{\metre\squared\per\volt\second}\)) in Lösung bleibt gleich und ihr Beitrag
+		zur Änderung des Leitwertes kann vernachlässigt werden\footnote{In der Tat befinden sich daneben auch Hydroxid- und Hydronium-Ionen in Lösung. Diese stehen jedoch im
+		Gleichgewicht zueinander und ihre Beiträge können ebenfalls vernachlässigt werden.}.\par\medskip
+		Im Äquivalenzpunkt wurde gerade jedes \(Cl^-\) durch ein \(NO_3^-\) ersetzt. Die Gesamtleitfähigkeit wird nunmehr nur durch die sich in Lösung befindlichen Natrium-Anionen
+		bestimmt.\par\medskip
+		Nach dem Äquivalenzpunkt werden durch fortlaufende Zugabe von Silbernitratlösung zusätzliche Ladungsträger in Form von \(Ag^+\) (\(\SI{6,4\cdot10^{-8}}{\metre\squared\per\volt\second}\))
+		und \(NO_3^-\) eingebracht, die durch fehlende Reaktionspartner in Lösung verbleiben und letztlich zu einem Anstieg der Gesamtleitfähigkeit führen. Hier ist durch den gemeinsamen
+		Beitrag der Silber-Anionen und der Nitrat-Kationen mit einer steileren Flanke zu rechnen.

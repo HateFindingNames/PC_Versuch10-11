@@ -8,6 +8,7 @@
 %\pdfsuppresswarningpagegroup=1	% suppress stupid warnings originating from \includesvg
 %-----------------------------------------------------------------
 \input{pre-packages}
+\usepackage{setspace}
 \input{pre-variables}
 \input{pre-newcommand}
 \input{pre-page-layout}
@@ -37,11 +38,14 @@
 % \newcommand{\chaptercount}{5} % put number of chapters here
 % \foreach \c in {1,...,\chaptercount}{\input{chapters/\c_chap}}
 \newgeometry{text={15cm,22.5cm},left=2cm,right=4cm, headsep=1cm}
-\include{chapters/1_chap}
-\include{chapters/2_chap}
-\include{chapters/3_chap}
-\include{chapters/4_chap}
-\include{chapters/5_chap}
+\begin{onehalfspacing}
+	\include{chapters/vorwort}
+	\include{chapters/theo_hintergrund}
+	\include{chapters/vorbereitung}
+	\include{chapters/versuchsdurchf}
+	\include{chapters/auswertung}
+	\include{chapters/diskussion.tex}
+\end{onehalfspacing}
 %-----------------------------------------------------------------
 \newpage
 \listoffigures 

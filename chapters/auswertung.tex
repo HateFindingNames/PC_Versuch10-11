@@ -1,0 +1,81 @@
+%ltex: language=de-DE
+\chapter{Auswertung}
+	Hier soll zunächst aus den gesammelten Messdaten der spezifische Brennwert \(H_0\) der unbekannten Probe ermittelt werden. Im darauf folgenden
+	Kapitel wird der in der Probe gebundene Chlorgehalt ermittelt.
+	\section{Kalorimetrie}
+		Die Messergebnisse aus der in \cref{sec:vorbereitung kalorimetrischer aufschluss} durchgeführten Kalibrierung und der in
+		\cref{sec:kalorimeter bestimmung unbekannte probe} beschriebenen Folgemessung des Paraffins sind in \cref{fig:tempverlauf}
+		grafisch aufgetragen. Es können durch die Verbrennung verursachte Temperaturdifferenzen von \(\Delta T_{kalib} = \SI{1,6778}{\kelvin}\) und
+		\(\Delta T_{Probe} = \SI{3,5619}{\kelvin}\) abgelesen werden.
+		\begin{figure}[h]
+			\centering
+			\includesvg[width=.9\textwidth]{assets/plots/kalo/kalo}
+			\caption[Temperaturverlauf der Kalibrierung und der Messung]{Temperaturverlauf beim Kalibriervorgang (blau) und bei der Messung der probe (rot).}
+			\label{fig:tempverlauf}
+		\end{figure}
+
+		Mit der nach \cref{eq:gemessene kalorimeterkonstante} ermittelten Kalorimeterkonstante wird durch Umstellen von \cref{eq:grundgleichung fuer kalib umgeschrieben}
+		der Brennwert der Probe ermittelt gemäß
+		\begin{equation}
+			H_{Probe,0} = \frac{\Delta T_{mess} \cdot k_{mess} - Q_{faden}}{m_{tot}}
+			\label{eq:brennwertgleichung}
+		\end{equation}
+		und errechnet sich mit \(\Delta T_{Probe} = \SI{3,5619}{\kelvin}\), \(m_{tot} = \SI{688,8}{\milli\gram}\) und dem in \cref{eq:gemessene kalorimeterkonstante} gefundenen Wert für \(k_{mess}\)
+		zu
+		\begin{equation}
+			H_{Probe,0} = \frac{\SI{3,5619}{\kelvin} \cdot \SI{8025}{\joule\per\kelvin} - \SI{50}{\joule}}{\SI{688,8 \cdot 10^{-3}}{\gram}} = \SI{41,426}{\joule\per\gram}
+		\end{equation}\par\medskip
+		Dem gegenüber steht eine durch Einsetzen der Werte für \(H_{Benz}\) und \(\Delta T_{kalib} = \SI{1,6778}{\kelvin}\) in \cref{eq:kalorische grundgleichung mit kaloriemeterkram} rechnerisch ermittelte
+		Kalorimeterkonstante von
+		\begin{equation}
+			k_{calc}= \frac{\SI{26461}{\joule\per\gram} \cdot \SI{506,8}{\milli\gram} + \SI{50}{\joule}}{\SI{1,6778}{\kelvin}} = \SI{8022,67}{\joule\per\kelvin}
+			\label{eq:rechnerische kalorimeterkonstante}
+		\end{equation}
+		was zu einem abweichenden Brennwert der Probe von
+		\begin{equation}
+			H_{Probe,1} = \frac{\SI{3,5619}{\kelvin} \cdot \SI{8248,83}{\joule\per\kelvin} - \SI{50}{\joule}}{\SI{688,8 \cdot 10^{-3}}{\gram}} = \SI{42,583}{\kilo\joule\per\gram}
+		\end{equation}
+		führt. Die Abweichung zwischen den beiden gefundenen Brennwerten der Probe ist mit \(\approx \SI{3}{\percent}\) signifikant, lässt sich aber durch fehlende Datenpunkte der
+		Temperaturwerte \(t < \SI{3,8}{\minute}\) jeweils der Kalibrierung und der Messung der Probe erklären (vgl. \crefrange{fig:gemessene temperaturdifferenz des kalibriervorgangs}{fig:gemessene temperaturdifferenz der probenmessung}).
+	\section{Titration}
+		Mit dem Verbrauch des Titers in der in \cref{sec:bekannter chloridgehalt} hergestellten Lösung bis zum Äquivalenzpunkt
+		lässt sich die Konzentration der Silber-Anionen \(c(Ag^{+})\) des Titers bestimmen. \Cref{fig:verlauf leitf chloridlsgn}
+		zeigt die aufgezeichneten Datenpunkte und die beiden Ausgleichsgeraden. Das Verbrauchsvolumen in ihrem Schnittpunkt beträgt hier etwa
+		\SI{24,788}{\milli\litre}.
+		\begin{figure}[h]
+			\centering
+			\includesvg[width=.9\textwidth]{assets/plots/titration/chloridlsgn}
+			\caption[Verlauf der Leitfähigkeit der Referenzlösung]{Verlauf der Leitfähigkeit bei der konduktometrischen Titration der Referenzlösung.}
+			\label{fig:verlauf leitf chloridlsgn}
+		\end{figure}
+		% \newpage
+		Zunächst muss die Anzahl vorgelegter Chlorid-Ionen bekannt sein:
+		\begin{align}
+			n(Cl^-) &= c(Cl^-) \cdot V_{Titrand,1}\nonumber\\
+					&= \SI{0,1}{\mole\per\litre} \cdot \SI{25}{\milli\litre} = \SI{2,5}{\milli\mole}\label{eq:anzahl chloridionen}
+		\end{align}
+		Mit \(n(Cl^{-}) = n(Ag^{+})\) (vgl. \cref{re:NaCl und AgNO3} für die Fälle vor und im Äquivalenzpunkt) ergibt sich die Konzentration der Silbernitratlösung rechnerisch zu
+
+		\begin{equation}
+			c(Ag^+)	= \frac{n(Ag^+)}{V_{Titer,1}} = \frac{n(Cl^-)}{V_{Titer,1}} = \frac{\SI{2,5}{\milli\mole}}{\SI{24,788}{\milli\litre}} \approx \SI{0,10}{\mole\per\litre}
+			\label{eq:konzentration silber gerechnet}
+		\end{equation}
+
+		Somit lässt sich nach Titration der chlorierten Absorberlösung (vgl. \cref{fig:verlauf leitf aufschluss}) mit Umstellen von \cref{eq:konzentration silber gerechnet}
+		die Anzahl der in Lösung befindlichen Chlorid-Ionen
+		\begin{equation}
+			\setlength{\jot}{10pt}
+			n(Cl^-)	= c(Cl^-) \cdot V_{Titer,2} = \SI{0,1}{\mole\per\litre} \cdot \SI{9,461}{\milli\litre} \approx \SI{0,95}{\milli\mole}
+			\label{eq:anzahl chlor in absorber}
+		\end{equation}
+		und weiterführend mit der Einwaage von \(m_{tot} = \SI{688,8}{\milli\gram}\) des verbrannten Paraffins sein Chlorgehalt bestimmen.
+		\begin{align}
+			p(Cl^-) &= \frac{m_{Cl^-}}{m_{tot}} \cdot \SI{100}{\percent} = \frac{M(Cl^-) \cdot n(Cl^-)}{m_{tot}} \cdot \SI{100}{\percent}\nonumber\\
+					&= \frac{\SI{35,45}{\gram\per\mole} \cdot \SI{0,95}{\milli\mole}}{\SI{688,8}{\milli\gram}} \cdot \SI{100}{\percent} \approx \SI{4,9}{\percent}
+		\end{align}
+		\begin{figure}[h]
+			\centering
+			\includesvg[width=.9\textwidth]{assets/plots/titration/absorb}
+			\caption[Verlauf der Leitfähigkeit des Aufschlusses]{Verlauf der Leitfähigkeit bei der konduktometrischen Titration des in NaOH gebundenen Aufschlusses aus V11.}
+			\label{fig:verlauf leitf aufschluss}
+		\end{figure}
